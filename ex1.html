@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercici Leaflet</title>
+        <!--Include Leaflet CSS file in the head section of your document-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+            crossorigin="" />
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+    </head>
+
+    <body>
+
+        <!-- Introduïm ID amb dimensió desitjada -->
+        <div id="mapid" style="height: 500px"></div>
+
+
+
+        <script>
+
+            // Definim la variable mapa, amb coordenades i zoom 
+            var mapaPlCat = L.map('mapid').setView([41.387, 2.17], 16);
+
+
+            // Introduïm la capa amb grilla de carrers 
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(mapaPlCat);
+
+            // Definim un marcador a les coordenades de Balmes 16
+            var marcadorBalmes = L.marker([41.387017, 2.166038]).addTo(mapaPlCat);
+
+            // Afegim un popUp que s'activa al clicar sobre el marcador (el mètode .openPopup() al final obriria el popUp automàticamente sense clic)
+            marcadorBalmes.bindPopup("<b>Restaurant Centfocs</b><br>Carrer de Balmes, 16, 08007 Barcelona");
+
+        </script>
+    </body>
+
+</html>
